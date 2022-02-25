@@ -12,7 +12,7 @@ def restart_service(event, context):
     service_name = event["service_name"]
 
     logger.info("Starting restart of {0} service in {1} cluster".format(service_name, cluster))
-    response = client.list_tasks(cluster=cluster, family=service_name)
+    response = client.list_tasks(cluster=cluster, serviceName=service_name)
     tasks = response.get('taskArns', [])
     logger.info("Service is running {0} underlying tasks".format(len(tasks)))
     for task in tasks:
